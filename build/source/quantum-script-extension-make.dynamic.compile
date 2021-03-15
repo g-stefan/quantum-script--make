@@ -1,6 +1,6 @@
 --dll qse-make
 --project-base=quantum-script-extension-make
---source-is-separate
+--build-include
 --dll-no-version
 --use-project=quantum-script
 --install-dev
