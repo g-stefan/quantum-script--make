@@ -15,10 +15,10 @@ namespace Quantum {
 			namespace Make {
 				namespace Version {
 
-					static const char *version_ = "2.2.0";
+					static const char *version_ = "2.4.0";
 					static const char *build_ = "21";
-					static const char *versionWithBuild_ = "2.2.0.21";
-					static const char *datetime_ = "2021-11-16 23:44:48";
+					static const char *versionWithBuild_ = "2.4.0.21";
+					static const char *datetime_ = "2021-11-22 17:08:01";
 
 					const char *version() {
 						return version_;
