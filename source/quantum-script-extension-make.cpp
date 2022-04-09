@@ -14,11 +14,10 @@
 #include "quantum-script-extension-make-license.hpp"
 #include "quantum-script-extension-make.hpp"
 #ifndef QUANTUM_SCRIPT_EXTENSION_MAKE_NO_VERSION
-#include "quantum-script-extension-make-version.hpp"
+#	include "quantum-script-extension-make-version.hpp"
 #endif
 
 #include "quantum-script-extension-make.src"
-
 
 //#define QUANTUM_SCRIPT_VM_DEBUG_RUNTIME
 
@@ -59,4 +58,3 @@ extern "C" QUANTUM_SCRIPT_EXTENSION_MAKE_EXPORT void quantumScriptExtension(Quan
 	Quantum::Script::Extension::Make::initExecutive(executive, extensionId);
 };
 #endif
-

@@ -12,6 +12,5 @@
 #include "quantum-script-extension-make-license.cpp"
 
 #ifndef QUANTUM_SCRIPT_EXTENSION_MAKE_NO_VERSION
-#include "quantum-script-extension-make-version.cpp"
+#	include "quantum-script-extension-make-version.cpp"
 #endif
-
