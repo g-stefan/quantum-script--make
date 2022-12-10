@@ -13,28 +13,27 @@
 
 namespace XYO::QuantumScript::Extension::Make {
 
-				void registerInternalExtension(Executive *executive) {
-					executive->registerInternalExtension("Make", initExecutive);
-				};
+	void registerInternalExtension(Executive *executive) {
+		executive->registerInternalExtension("Make", initExecutive);
+	};
 
-				void initExecutive(Executive *executive, void *extensionId) {
+	void initExecutive(Executive *executive, void *extensionId) {
 
-					String info = "Make\r\n";
-					info << License::shortLicense();
+		String info = "Make\r\n";
+		info << License::shortLicense();
 
-					executive->setExtensionName(extensionId, "Make");
-					executive->setExtensionInfo(extensionId, info);
-					executive->setExtensionVersion(extensionId, Extension::Make::Version::versionWithBuild());
-					executive->setExtensionPublic(extensionId, true);
+		executive->setExtensionName(extensionId, "Make");
+		executive->setExtensionInfo(extensionId, info);
+		executive->setExtensionVersion(extensionId, Extension::Make::Version::versionWithBuild());
+		executive->setExtensionPublic(extensionId, true);
 
-					executive->compileStringX(librarySource);
-				};
-
+		executive->compileStringX(librarySource);
+	};
 
 };
 
 #ifdef XYO_COMPILE_DYNAMIC_LIBRARY
-extern "C" XYO_QUANTUMSCRIPT_EXTENSION_MAKE_EXPORT  void quantumScriptExtension(XYO::QuantumScript::Executive *executive, void *extensionId) {
+extern "C" XYO_QUANTUMSCRIPT_EXTENSION_MAKE_EXPORT void quantumScriptExtension(XYO::QuantumScript::Executive *executive, void *extensionId) {
 	XYO::QuantumScript::Extension::Make::initExecutive(executive, extensionId);
 };
 #endif
