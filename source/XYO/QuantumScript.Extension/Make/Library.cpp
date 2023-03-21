@@ -20,7 +20,7 @@ namespace XYO::QuantumScript::Extension::Make {
 	void initExecutive(Executive *executive, void *extensionId) {
 
 		String info = "Make\r\n";
-		info << License::shortLicense();
+		info << License::shortLicense().c_str();
 
 		executive->setExtensionName(extensionId, "Make");
 		executive->setExtensionInfo(extensionId, info);

@@ -13,8 +13,8 @@
 
 namespace XYO::QuantumScript::Extension::Make::License {
 
-	XYO_QUANTUMSCRIPT_EXTENSION_MAKE_EXPORT const char *license();
-	XYO_QUANTUMSCRIPT_EXTENSION_MAKE_EXPORT const char *shortLicense();
+	XYO_QUANTUMSCRIPT_EXTENSION_MAKE_EXPORT std::string license();
+	XYO_QUANTUMSCRIPT_EXTENSION_MAKE_EXPORT std::string shortLicense();
 
 };
 
