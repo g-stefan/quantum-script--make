@@ -8,4 +8,4 @@
 #include <XYO/QuantumScript.Extension/Make/Copyright.rh>
 #include <XYO/QuantumScript.Extension/Make/Version.rh>
 
-XYO_APPLICATION_VERSION_INFO(XYO_QUANTUMSCRIPT_EXTENSION_MAKE,"quantum-script--make.dll","Quantum Script Extension Make")
+XYO_PLATFORM_VERSION_INFO(XYO_QUANTUMSCRIPT_EXTENSION_MAKE,"quantum-script--make.dll","Quantum Script Extension Make")
