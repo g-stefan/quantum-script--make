@@ -32,8 +32,10 @@ namespace XYO::QuantumScript::Extension::Make {
 
 };
 
-#ifdef XYO_PLATFORM_COMPILE_DYNAMIC_LIBRARY
+#ifndef XYO_QUANTUMSCRIPT_EXTENSION_MAKE_LIBRARY
+#	ifdef XYO_PLATFORM_COMPILE_DYNAMIC_LIBRARY
 extern "C" XYO_QUANTUMSCRIPT_EXTENSION_MAKE_EXPORT void quantumScriptExtension(XYO::QuantumScript::Executive *executive, void *extensionId) {
 	XYO::QuantumScript::Extension::Make::initExecutive(executive, extensionId);
 };
+#	endif
 #endif
