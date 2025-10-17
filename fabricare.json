@@ -18,6 +18,26 @@
 				]
 			},
 			{
+				"name": "quantum-script--make.static",
+				"make": "lib",
+				"category": "make",
+				"SPDX-License-Identifier": "MIT",
+				"sourcePath" : "XYO/QuantumScript.Extension/Make",
+				"dependency" : [
+					"quantum-script.static",
+					"quantum-script--console.static",
+					"quantum-script--buffer.static",
+					"quantum-script--thread.static",
+					"quantum-script--shell.static",
+					"quantum-script--shellfind.static"
+				],
+				"dependencyDefines" : [
+					"XYO_QUANTUMSCRIPT_EXTENSION_MAKE_LIBRARY"
+				],
+				"linkVersion": "quantum-script--make",
+				"crt": "static"
+			},
+			{
 				"name" : "test.01",
 				"make" : "exe",
 				"category" : "test",
