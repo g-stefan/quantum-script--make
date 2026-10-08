@@ -43,6 +43,7 @@ function Make() {
 		var threads;
 		var done;
 		var countX;
+		var k;
 
 		if (Script.isNil(target)) {
 			Script.forEach(this.targets_, function(key) {
@@ -78,7 +79,7 @@ function Make() {
 				CurrentThread.sleep(1);
 				if (threads.length < this.threadsCount) {
 					if (count < targetToBuild.length) {
-						threads[threads.length] = [ Thread.newThread(this.targets_[targetToBuild[count]][1], this.targets_[targetToBuild[count]][2], this.targets_[targetToBuild[count]][3]), targetToBuild[count] ];
+						threads[threads.length] = this.buildThread_(targetToBuild[count]);
 						++count;
 						continue;
 					};
@@ -111,7 +112,7 @@ function Make() {
 				for (k = 0; k < threads.length; ++k) {
 					if (!threads[k]) {
 						if (count < targetToBuild.length) {
-							threads[k] = [ Thread.newThread(this.targets_[targetToBuild[count]][1], this.targets_[targetToBuild[count]][2], this.targets_[targetToBuild[count]][3]), targetToBuild[count] ];
+							threads[k] = this.buildThread_(targetToBuild[count]);
 							++count;
 							continue;
 						};
@@ -119,6 +120,14 @@ function Make() {
 				};
 			};
 		};
+	};
+
+	this.buildThread_ = function(target) {
+		var thread = Thread.newThread(this.targets_[target][1], this.targets_[target][2], this.targets_[target][3]);
+		if (Script.isNil(thread)) {
+			throw (new MakeError("Build failed, unable to start recipe: " + target));
+		};
+		return [ thread, target ];
 	};
 
 	this.buildTreeGenerate_ = function(buildTree, target, level) {
@@ -145,11 +154,15 @@ function Make() {
 		};
 
 		if (this.targets_[target][4]) {
+			// Already visited: if it is scheduled for rebuild, dependents
+			// must rebuild too; the caller adds it at this level and its
+			// sources are bumped below it
+			var scheduled = this.buildTreeHasTarget_(buildTree, target);
 			Script.forEach(this.targets_, function(key, value) {
 				this.targets_[key][6] = false;
 			}, this);
 			this.buildTreeBumpTarget_(buildTree, target, level);
-			return false;
+			return scheduled;
 		};
 
 		this.targets_[target][4] = true;
@@ -197,6 +210,18 @@ function Make() {
 			};
 		};
 		return this.buildTreeGenerate_(buildTree, source, level + 1);
+	};
+
+	this.buildTreeHasTarget_ = function(buildTree, target) {
+		var retV = false;
+		Script.forEach(buildTree, function(key, value) {
+			if (!Script.isNil(value)) {
+				if (value[target]) {
+					retV = true;
+				};
+			};
+		}, this);
+		return retV;
 	};
 
 	this.buildTreeBumpTarget_ = function(buildTree, target, level) {
